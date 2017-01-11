@@ -19,8 +19,8 @@
       ...
       [/channel_name]
 
-    where [channel_name] is replaced with the name of the channel,
-    which encloses the payload of the message received.
+    where [channel_name] and [/channel_name] display the name of the channel,
+    and enclose the payload of the message received.
 */
 
 const DEFAULT_PG_CONNECTION_STRING = 'postgres:///egull';
