@@ -26,3 +26,36 @@ The second parameter is the connection string to the database (optional).
 
 For more details, including the description of the output format, see the
 documentation at the start of [server.js][./server.js].
+
+## Example
+
+In a terminal window, start the server from current folder:
+
+```
+$ node server.js chat
+```
+
+The server prints its status (on standard error):
+
+```
+Connected to: postgres:///egull
+Listening to: chat
+```
+
+In another terminal window, run the `psql` client and publish a message:
+
+```
+$ psql -d egull
+egull=# NOTIFY chat, 'hello';
+NOTIFY
+```
+
+The server prints the message received:
+
+```
+[chat]
+hello
+[/chat]
+```
+
+You can stop the server by sending it a `SIGINT` signal using Ctr+C.
