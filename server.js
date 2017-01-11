@@ -2,7 +2,7 @@
   Listen to PosgreSQL notifications and print messages to standard output
 
   Usage:
-    node server.js databaseName [pgConnectionString]
+    node server.js channelName [pgConnectionString]
 
   Parameters:
     ($0 - node executable path)
