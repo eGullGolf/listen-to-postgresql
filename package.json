@@ -1,0 +1,8 @@
+{
+  "name": "listen-to-postgresql",
+  "version": "0.1.0",
+  "description": "Listen to PostgreSQL notifications and print them to standard output",
+  "main": "server.js",
+  "license": "UNLICENSED",
+  "private": true
+}
