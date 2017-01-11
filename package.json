@@ -4,5 +4,8 @@
   "description": "Listen to PostgreSQL notifications and print them to standard output",
   "main": "server.js",
   "license": "UNLICENSED",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "pg": "^6.1.2"
+  }
 }
