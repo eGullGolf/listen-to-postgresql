@@ -8,9 +8,9 @@
     ($0 - node executable path)
     ($1 - script path)
     $2 - required, string, the name of the LISTEN/NOTIFY channel
-    $3 - optional, string, the connection string to connect to the
-         PostgreSQL database, defaults to 'postgres:///egull' to
-         connect to the 'egull' database on the local host
+    $3 - required, string, the connection string to connect to the
+         PostgreSQL database, e.g. 'postgres:///database_name' to
+         connect to the 'database_name' database on the local host
 
   Output:
     Prints messages received from the given channel in following format:
@@ -23,21 +23,20 @@
     and enclose the payload of the message received.
 */
 
-const DEFAULT_PG_CONNECTION_STRING = 'postgres:///egull';
-const USAGE = "Usage: node server.js channelName [pgConnectionString]";
+const USAGE = "Usage: node server.js channelName pgConnectionString";
 
 function main() {
   var
     channelName = process.argv[2],
     pgConnectionString = process.argv[3];
 
-  if ( typeof channelName !== "string" ) {
+  if (
+    typeof channelName !== "string"
+    || typeof pgConnectionString !== "string"
+  ) {
     console.error( USAGE );
     process.exitCode = 1;
     return;
-  }
-  if ( typeof pgConnectionString !== "string" ) {
-    pgConnectionString = DEFAULT_PG_CONNECTION_STRING;
   }
 
   var pg = require('pg');
