@@ -12,40 +12,41 @@ npm install
 Start with:
 
 ```
-node server.js channel_name
+node server.js channel_name postgres:///database_name
 ```
 
-or
-
-```
-node server.js channel_name postgres:///egull
-```
-
-The first parameter is the name of the channel to connect to (required).
-The second parameter is the connection string to the database (optional).
+The first parameter is the name of the channel to connect to.
+The second parameter is the connection string to the database.
+Both parameters are required.
 
 For more details, including the description of the output format, see the
 documentation at the start of [server.js][./server.js].
 
 ## Example
 
-In a terminal window, start the server from current folder:
+After having created a database, e.g. 'chatdb':
 
 ```
-$ node server.js chat
+$ createdb chatdb
+```
+
+Start the server from current folder:
+
+```
+$ node server.js chat postgres:///chatdb
 ```
 
 The server prints its status (on standard error):
 
 ```
-Connected to: postgres:///egull
+Connected to: postgres:///chatdb
 Listening to: chat
 ```
 
 In another terminal window, run the `psql` client and publish a message:
 
 ```
-$ psql -d egull
+$ psql -d chatdb
 egull=# NOTIFY chat, 'hello';
 NOTIFY
 ```
@@ -58,4 +59,9 @@ hello
 [/chat]
 ```
 
-You can stop the server by sending it a `SIGINT` signal using Ctr+C.
+You can stop the server by sending it a `SIGINT` signal using Ctr+C,
+quit the `psql` client with `\q`, and drop the example database with:
+
+```
+$ dropdb chatdb
+```
